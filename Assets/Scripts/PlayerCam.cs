@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerCam : MonoBehaviour
 {
@@ -9,22 +10,30 @@ public class PlayerCam : MonoBehaviour
 
     public Transform orientation;
 
+
+
     float xRotation;
     float yRotation;
 
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        //xRotation = orientation.rotation.x;
-        //yRotation = orientation.rotation.y;
-        //transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-
+        SetInitalReferences();
     }
 
     // Update is called once per frame
     void Update()
+    {
+        MyInput();
+    }
+
+    void SetInitalReferences()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    void MyInput()
     {
         // Get mouse input
         float mouseInputX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensitivityX;
@@ -37,4 +46,5 @@ public class PlayerCam : MonoBehaviour
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
     }
+
 }
