@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6980114418067832832}
   - component: {fileID: 5501204323668166642}
   - component: {fileID: -808457371741624526}
-  - component: {fileID: -3981531938668352289}
+  - component: {fileID: -4109765599034919516}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Bullet 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,7 +136,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-3981531938668352289
+--- !u!114 &-4109765599034919516
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,9 +145,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8327814696988880070}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f04877c8eb83a5a46b36652ccf0ab017, type: 3}
+  m_Script: {fileID: 11500000, guid: 62b5c81586f49d54392e5b3eb41fb86f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileName: Bullet
-  m_ProjectileSpeed: 30
+  projectileName: Bullet 1
+  m_ProjectileSpeed: 20
   m_ProjectileLifeTime: 5

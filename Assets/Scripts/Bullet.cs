@@ -2,15 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+// INHERITANCE Bullet ingerit all the atributes from Projectile class
+public class Bullet : Projectile
 {
-
-    float secondsToDestroy = 5f;
-void Awake()
+    public override void RotateProjectile()
     {
-        Destroy(this.gameObject, secondsToDestroy);
+        transform.Rotate(90, 0, 0);
     }
-
-
-
 }

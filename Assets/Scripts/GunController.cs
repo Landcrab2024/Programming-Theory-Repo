@@ -5,48 +5,69 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
-    // Bullet
-    public GameObject myBulletPrefab;
-    
-    // Bullet force
-    public float myBulletSpeed;
-
     // Gun stats
     public Transform bulletSpawnTransform;
     private float fireRate = 0.3f;
     private float nextFire;
-    //bool canShoot;
+    private ProjectileHandler myProjectilehandler;
+    //private int projectileNumber = 0;
+    private float defaultProjSpeed = 5f;
+    public GameObject defaultProjectile;
 
     // Start is called before the first frame update
     void Start()
     {
-        //readyToShoot = true;
-        //canShoot = true;
+        myProjectilehandler = GetComponent<ProjectileHandler>();
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        if(Input.GetMouseButton(0) && Time.time > nextFire)
+        // ABSTRACTION use of the handled inputs to the MyInput function
+        MyInput();
+    }
+
+    void MyInput()
+    {
+        // ABSTRACTION function, called in LateUpdate()
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            //Debug.Log("Input.GetMouseButton(0)" + Time.time + "'>'" + "> nextFire");
             nextFire = Time.time + fireRate;
-            ShootBullet();
-            //StartCoroutine("ShootDelay");
+            ShootProjectile();
+        }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            nextFire = Time.time + fireRate;
+            ShootProjectile(2);
+        }
+        if (Input.GetMouseButton(0) && Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            ShootProjectile(0);
+        }
+        if (Input.GetMouseButton(1) && Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            ShootProjectile(1, 5f);
         }
     }
 
-    void ShootBullet()
-    {
-        //GameObject projectile = Instantiate(myBulletPrefab, bulletSpawnTransform.position, bulletSpawnTransform.rotation);
-        GameObject projectile = Instantiate(myBulletPrefab, bulletSpawnTransform.position, Quaternion.identity);
-        projectile.GetComponent<Rigidbody>().velocity = transform.forward * myBulletSpeed;
-    }
 
-    //IEnumerator ShootDelay()
-    //{
-    //    canShoot = false;
-    //    yield return new WaitForSeconds(.3f);
-    //    canShoot = true;
-    //}
+    // POLYMORPHISM Same method can be called with different inputs
+    public virtual void ShootProjectile()
+    {
+        GameObject projectile = Instantiate(defaultProjectile, bulletSpawnTransform.position, Quaternion.identity);
+        projectile.GetComponent<Rigidbody>().velocity = transform.forward * defaultProjSpeed;
+    }
+    public virtual void ShootProjectile(int projNr)
+    {
+        GameObject projectile = Instantiate(myProjectilehandler.projectiles[projNr], bulletSpawnTransform.position, Quaternion.identity);
+        projectile.GetComponent<Rigidbody>().velocity = transform.forward * myProjectilehandler.GetProjectileSpeed(projNr);
+    }
+    public virtual void ShootProjectile(int projNr, float projSpd)
+    {
+        GameObject projectile = Instantiate(myProjectilehandler.projectiles[projNr], bulletSpawnTransform.position, Quaternion.identity);
+        projectile.GetComponent<Rigidbody>().velocity = transform.forward * projSpd;
+    }
 }

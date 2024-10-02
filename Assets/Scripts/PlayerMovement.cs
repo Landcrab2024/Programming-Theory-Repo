@@ -6,15 +6,13 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed;
-
     public float groundDrag;
-
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
     public bool readyToJump;
 
-    public float playerVelocity;
+    //public float playerVelocity;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -37,26 +35,14 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerRb = GetComponent<Rigidbody>();
-        playerRb.freezeRotation = true;
+        SetInitalReferences();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
-
         MyInput();
         SpeedControl();
-
-        // Handle drag
-        if (grounded)
-        {
-            playerRb.drag = groundDrag;
-        }
-        else
-            playerRb.drag = 0;
     }
 
     private void FixedUpdate()
@@ -64,8 +50,17 @@ public class PlayerMovement : MonoBehaviour
         MovePlayer();
     }
 
+    void SetInitalReferences()
+    {
+        playerRb = GetComponent<Rigidbody>();
+        playerRb.freezeRotation = true;
+    }
+
     private void MyInput()
     {
+        // Ground check
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
+
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
@@ -81,6 +76,13 @@ public class PlayerMovement : MonoBehaviour
             Invoke(nameof(ResetJump), jumpCooldown);
 
         }
+        // Handle drag
+        if (grounded)
+        {
+            playerRb.drag = groundDrag;
+        }
+        else
+            playerRb.drag = 0;
     }
 
     public void MovePlayer()
