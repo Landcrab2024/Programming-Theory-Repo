@@ -20,7 +20,7 @@ public class FindEnemies : MonoBehaviour
 
     void searchForEnemies()
     {
-        Debug.Log("searchForEnemies()");
+        //Debug.Log("searchForEnemies()");
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
         if(enemies.Length > 0)

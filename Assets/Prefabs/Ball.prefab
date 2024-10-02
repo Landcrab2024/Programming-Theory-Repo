@@ -148,4 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileName: Ball
   m_ProjectileSpeed: 30
-  m_ProjectileLifeTime: 10
+  m_ProjectileLifeTime: 15

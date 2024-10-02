@@ -6,15 +6,10 @@ using UnityEngine;
 // Code in this class will add extra bounce
 public class Ball : Projectile
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        //Code in this class will add extra bounce
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
+    //// Update is called once per frame
+    //void Update()
+    //{
         
-    }
+    //}
 }

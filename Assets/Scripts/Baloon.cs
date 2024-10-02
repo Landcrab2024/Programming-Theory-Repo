@@ -13,6 +13,6 @@ public class Baloon : Projectile
     {
         // Code in this class will add extra upward force
         Rigidbody body = GetComponent<Rigidbody>();
-        body.AddForce(Vector3.up * upwardForce, ForceMode.Force);
+        body.AddForce(Vector3.up * upwardForce * Time.deltaTime, ForceMode.Force);
     }
 }

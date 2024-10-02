@@ -148,5 +148,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileName: Baloon
   m_ProjectileSpeed: 1
-  m_ProjectileLifeTime: 10
-  upwardForce: 0.675
+  m_ProjectileLifeTime: 15
+  upwardForce: 50

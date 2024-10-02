@@ -43,13 +43,8 @@ public class PlayerMovement : MonoBehaviour
     {
         MyInput();
         SpeedControl();
-    }
-
-    private void FixedUpdate()
-    {
         MovePlayer();
     }
-
     void SetInitalReferences()
     {
         playerRb = GetComponent<Rigidbody>();

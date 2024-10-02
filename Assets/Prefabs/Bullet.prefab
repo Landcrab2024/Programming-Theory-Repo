@@ -150,4 +150,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileName: Bullet
   m_ProjectileSpeed: 30
-  m_ProjectileLifeTime: 5
+  m_ProjectileLifeTime: 15
